@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
-    @Autowired
+    private final
     ArticleDao articleDao;
 
 
@@ -22,10 +21,15 @@ public class ArticleServiceImpl implements ArticleService {
      */
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+    @Autowired
+    public ArticleServiceImpl(ArticleDao articleDao) {
+        this.articleDao = articleDao;
+    }
+
     @Override
-    public Optional<Article> getById(String id) {
-        Optional<Article> article = articleDao.findById(id);
-        return article;
+    public Article getById(String id) {
+
+        return articleDao.findById(id).orElse(null);
     }
 
     @Override

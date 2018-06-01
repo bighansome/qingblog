@@ -3,11 +3,10 @@ package com.example.qingblog.service;
 import com.example.qingblog.entity.Article;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ArticleService {
 
-    Optional<Article> getById(String id);
+    Article getById(String id);
 
     List<Article> list();
 
