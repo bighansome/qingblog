@@ -1,6 +1,5 @@
 package com.example.qingblog.controller;
 
-import com.example.qingblog.aspect.WebSecurityConfig;
 import com.example.qingblog.entity.Article;
 import com.example.qingblog.entity.Category;
 import com.example.qingblog.entity.User;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -71,7 +69,7 @@ public class UserController {
     public String doLogin(HttpServletResponse response, User user, Model model){
 
         if (userService.login(user.getUsername(), user.getPassword())){
-            Cookie cookie = new Cookie(WebSecurityConfig.SESSION_KEY, user.toString());
+            Cookie cookie = new Cookie("user", user.toString());
             response.addCookie(cookie);
             model.addAttribute("user",user);
             System.out.println(cookie.getName());

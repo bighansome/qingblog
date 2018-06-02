@@ -31,6 +31,7 @@ public class ArticleController {
         return "index";
     }
 
+    @RequestMapping("list")
     public String list(Model model) {
         List<Article> articles = articleService.list();
         model.addAttribute("articles", articles);
